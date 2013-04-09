@@ -1,0 +1,27 @@
+{
+  "name": "wd-tools",
+  "version": "0.1.0",
+  "description": "Utility functions for Selenium WebDriver",
+  "author": "Jakob Mattsson <jakob.mattsson@gmail.com> (jakobmattsson.se)",
+  "main": "./lib/wd-tools.js",
+  "engines": {
+    "node": ">= 0.8"
+  },
+  "scripts": {
+    "pretest": "coffee -co lib src",
+    "prepublish": "coffee -co lib src",
+    "coverage": "jscov src .cov && JSCOV=.cov mocha --compilers coffee:coffee-script --reporter mocha-term-cov-reporter spec/*.coffee",
+    "test": "mocha --compilers coffee:coffee-script spec/*.coffee"
+  },
+  "dependencies": {
+    "async": "0.2.6",
+    "underscore": "1.4.4"
+  },
+  "devDependencies": {
+    "chai": "1.5.0",
+    "jscov": "0.2.0",
+    "mocha": "1.7.4",
+    "mocha-term-cov-reporter": "0.1.0",
+    "coffee-script": "1.4.0"
+  }
+}

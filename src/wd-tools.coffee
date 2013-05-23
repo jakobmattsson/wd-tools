@@ -53,6 +53,20 @@ gnjom = (newList, tag, funcName, callback) ->
     return callback(errors[0]) if errors.length > 0
     callback(null, elems)
 
+filterVisible = (newList, visibility, callback) ->
+  errors = []
+  async.filter newList, (e, cb) ->
+    e.isVisible (err, visible) ->
+      if noLongerInDOM(err)
+        cb(false)
+      else if err
+        errors.push(err)
+        cb(false)
+      else
+        cb(visibility == visible)
+  , (elems) ->
+    return callback(errors[0]) if errors.length > 0
+    callback(null, elems)
 
 
 resolver = (baseList, sel, callback) ->
@@ -65,6 +79,8 @@ resolver = (baseList, sel, callback) ->
       gnjom(newList, sel.meta.value, 'getValue', callback)
     else if Object.keys(sel.meta).length == 1 && sel.meta.index?
       callback(null, newList.filter((x, i) -> i.toString() == sel.meta.index))
+    else if Object.keys(sel.meta).length == 1 && sel.meta.visible?
+      filterVisible(newList, sel.meta.visible == 'true', callback)
     else
       throw "dont know what to do"
 

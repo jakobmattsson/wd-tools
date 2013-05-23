@@ -1,5 +1,6 @@
 chai = require 'chai'
-steps = require '../lib/wd-tools'
+jscov = require 'jscov'
+steps = require jscov.cover('..', 'lib', 'wd-tools')
 expect = chai.expect
 
 

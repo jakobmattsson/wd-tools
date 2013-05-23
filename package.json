@@ -1,6 +1,6 @@
 {
   "name": "wd-tools",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Utility functions for Selenium WebDriver",
   "author": "Jakob Mattsson <jakob.mattsson@gmail.com> (jakobmattsson.se)",
   "main": "./lib/wd-tools.js",
